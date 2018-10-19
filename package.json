@@ -1,0 +1,22 @@
+{
+  "name": "custom-rabbitmq",
+  "version": "1.0.0",
+  "description": "This NPM module provides a plug and play functionality for RabbitMQ Producers and Consumers.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nikhilgurnani/custom-rabbitmq.git"
+  },
+  "author": "Nikhil Gurnani (gurnanikhil@gmail.com)",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/nikhilgurnani/custom-rabbitmq/issues"
+  },
+  "homepage": "https://github.com/nikhilgurnani/custom-rabbitmq#readme",
+  "dependencies": {
+    "amqplib": "^0.5.2"
+  }
+}
