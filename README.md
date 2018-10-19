@@ -1,7 +1,8 @@
 # custom-rabbitmq
-## This NPM module provides a plug and play functionality for RabbitMQ Producers and Consumers.
+This NPM module provides a plug and play functionality for RabbitMQ Producers and Consumers.
 
 ###To initialize construtor you need rQCluster config like below
+--
 ```javascript
 let rq_cluster = {
   RABBITMQ: {
@@ -12,6 +13,7 @@ let rq_cluster = {
 ```
 
 ###Every rabbitmq queue must have config for each pair of producer and consumer. You can set the different parameters of the configuration according to your needs. It would somewhat look like:
+--
 ```javascript
 let myConf = {
   QUEUE: {
@@ -41,15 +43,14 @@ let myConf = {
   }
 }
 ```
-
 ###To construct producer or consumer with the rabbitmq configuration, simply use the below code:
+--
 ```javascript
 let consumerConstructor = require('./consumer)(rq_cluster);
 let producerConstructor = require('./producer)(rq_cluster);
 ```
-
-#Example
 ###Initialize a constructor like below
+--
 ```javascript
 let myConsumer = new consumerConstrutor(myConf.QUEUE.EXCHANGE_OPTS, myConf.QUEUE, {}, fulfillMentFunction)
 ```
@@ -64,9 +65,8 @@ function fulfilmentFunction(error, payload){
      * */
 };
 ```
-
-
 ###Initialize a producer like below
+--
 ```javascript
 let myProducer = new producerConstructor(myConf.QUEUE.EXCHANGE_OPTS, myConf.QUEUE.BINDINGKEY);
 ```
