@@ -45,8 +45,8 @@ let myConf = {
 ### To construct producer or consumer with the rabbitmq configuration, simply use the below code:
 
 ```javascript
-let consumerConstructor = require('./consumer)(rq_cluster);
-let producerConstructor = require('./producer)(rq_cluster);
+let consumerConstructor = require('./rqueue/consumer')(rq_cluster);
+let producerConstructor = require('./rqueue/producer')(rq_cluster);
 ```
 ### Initialize a constructor like below
 
