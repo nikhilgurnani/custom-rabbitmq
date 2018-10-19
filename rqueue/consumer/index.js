@@ -12,15 +12,16 @@ module.exports = function (rqConfig, serviceName) {
 
   function Consumer(exchangeObj, queue, cb) {
     let self = this;
-    self.logger = require('../../logging/')(serviceName, 'rqConsumerConnection');
+    self.logger = logger || console.log;
+    self.logger('Initializing logger in ' + serviceName);
     AMQP.connect(rqConfig.RABBITMQ.CONNECT_STRING, (error, conn) => {
       if (error) {
-        self.logger('error', 'Rabbitmq connection failed', { error, uri: rqConfig.RABBITMQ.CONNECT_STRING });
+        self.logger('Rabbitmq connection failed');
         process.exit(1);
       } else {
         conn.createChannel((error, channel) => {
           if (error) {
-            self.logger('error', 'Rabbitmq Channel creation failes', { error, uri: rqConfig.RABBITMQ.CONNECT_STRING });
+            self.logger('Rabbitmq Channel creation failed.');
             conn.close();
             process.exit(1);
           } else {
@@ -34,14 +35,14 @@ module.exports = function (rqConfig, serviceName) {
 
             channel.consume(queue.NAME, function (msg) {
               let payload = JSON.parse(msg.content);
-              self.logger('info', ' [x] new message received', payload);
+              self.logger('New message received', payload);
               cb(payload, function (error) {
                 if (error) channel.noAck(msg);
                 else channel.ack(msg);
               });
             }, queue.CONSUMEOPTS);
-            self.logger('info', 'Rabbitmq consumer channel created', { exchangeObj });
-            self.logger('info', ' [*] Waiting for messages in %s. To exit press CTRL+C', { queue, exchangeObj });
+            self.logger('Rabbitmq consumer channel created');
+            self.logger('Waiting for messages. To exit, press CTRL+C.');
           }
         });
       }
