@@ -1,6 +1,9 @@
 # custom-rabbitmq
 This NPM module provides a plug and play functionality for RabbitMQ Producers and Consumers.
 
+## Installation
+Run `npm -i custom-rabbitmq` in your command line.
+
 ### To initialize construtor you need rQCluster config like below
 ```javascript
 let rq_cluster = {
